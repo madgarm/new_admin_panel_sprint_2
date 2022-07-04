@@ -1,0 +1,44 @@
+[tool.poetry]
+name = "ya_admin_panel_sprint_1"
+version = "0.1.0"
+description = ""
+authors = ["Pavel <pave.noskov@x5.ru>"]
+
+[tool.poetry.dependencies]
+python = "3.10.5"
+Django = "^3.2"
+django-debug-toolbar = "^3.2.4"
+django-split-settings = "^1.1.0"
+python-dotenv = "^0.20.0"
+psycopg2-binary = "^2.9.3"
+gunicorn = "^20.1.0"
+setuptools = "^62.6.0"
+distribute = "^0.7.3"
+
+[tool.poetry.dev-dependencies]
+black = "^22.6.0"
+isort = "^5.10.1"
+flake8 = "^4.0.1"
+seed-isort-config = "^2.2.0"
+autoflake = "^1.4"
+Flake8-pyproject = "^0.9.0"
+
+[build-system]
+requires = ["poetry-core>=1.0.0"]
+build-backend = "poetry.core.masonry.api"
+
+[tool.black]
+line-length = 120
+skip-string-normalization = '1'
+
+[tool.isort]
+multi_line_output = 3
+include_trailing_comma = true
+force_grid_wrap = 0
+use_parentheses = true
+line_length = 120
+
+[tool.flake8]
+ignore = ["DJ01", "W503", "E231", "E501", "E203", "E722", "F401", "W605", "F403"]
+max-line-length = 120
+ban-relative-imports = true
