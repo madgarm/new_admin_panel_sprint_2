@@ -38,8 +38,11 @@ services:
     volumes:
       - static_volume:/opt/app/staticfiles
       - media_volume:/opt/app/mediafiles
-    expose:
-      - 8000
+#    expose:
+#      - 8000
+    # исключительно, чтобы проходили тесты из коллекции в PostMan, т.к. там указан доступ через порт 8000
+    ports:
+      - "8000:8000"
     env_file:
       - .env
 
