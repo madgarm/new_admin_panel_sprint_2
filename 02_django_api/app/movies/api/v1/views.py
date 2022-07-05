@@ -3,6 +3,7 @@ from django.db.models import Q
 from django.http import HttpResponseNotFound, JsonResponse
 from django.views.generic import DetailView
 from django.views.generic.list import BaseListView
+from movies.constants import PersonRoles
 from movies.models import FilmWork
 
 
@@ -15,17 +16,21 @@ class MoviesApiMixin:
             self.model.objects.annotate(genres=ArrayAgg('genre__name', distinct=True))
             .annotate(
                 actors=ArrayAgg(
-                    'personfilmwork__person__full_name', filter=Q(personfilmwork__role='actor'), distinct=True
+                    'personfilmwork__person__full_name', filter=Q(personfilmwork__role=PersonRoles.ACTOR), distinct=True
                 )
             )
             .annotate(
                 directors=ArrayAgg(
-                    'personfilmwork__person__full_name', filter=Q(personfilmwork__role='director'), distinct=True
+                    'personfilmwork__person__full_name',
+                    filter=Q(personfilmwork__role=PersonRoles.DIRECTOR),
+                    distinct=True,
                 )
             )
             .annotate(
                 writers=ArrayAgg(
-                    'personfilmwork__person__full_name', filter=Q(personfilmwork__role='writer'), distinct=True
+                    'personfilmwork__person__full_name',
+                    filter=Q(personfilmwork__role=PersonRoles.WRITER),
+                    distinct=True,
                 )
             )
         )
